@@ -1,0 +1,67 @@
+flowchart LR
+
+subgraph src["src"]
+  subgraph src_app["app"]
+    src_app__layout_tsx["_layout.tsx"]
+    src_app_index_tsx["index.tsx"]
+  end
+  subgraph src_features["features"]
+    subgraph src_features_auth["auth"]
+      src_features_auth_index_ts["index.ts"]
+      subgraph src_features_auth_components["components"]
+        src_features_auth_components_LoginForm_tsx["LoginForm.tsx"]
+      end
+      subgraph src_features_auth_hooks["hooks"]
+        src_features_auth_hooks_useLogin_ts["useLogin.ts"]
+      end
+      subgraph src_features_auth_services["services"]
+        src_features_auth_services_authService_ts["authService.ts"]
+      end
+      subgraph src_features_auth___tests__["__tests__"]
+        src_features_auth___tests___LoginForm_integration_test_tsx["LoginForm.integration.test.tsx"]
+      end
+    end
+  end
+  subgraph src_shared["shared"]
+    subgraph src_shared_components["components"]
+      src_shared_components_Button_tsx["Button.tsx"]
+      subgraph src_shared_components___tests__["__tests__"]
+        src_shared_components___tests___Button_test_tsx["Button.test.tsx"]
+      end
+    end
+    subgraph src_shared_theme["theme"]
+      src_shared_theme_tokens_ts["tokens.ts"]
+    end
+    subgraph src_shared_utils["utils"]
+      subgraph src_shared_utils___tests__["__tests__"]
+        src_shared_utils___tests___formatters_test_ts["formatters.test.ts"]
+      end
+      src_shared_utils_formatters_ts["formatters.ts"]
+    end
+  end
+  subgraph src_test["test"]
+    subgraph src_test_mocks["mocks"]
+      src_test_mocks_handlers_ts["handlers.ts"]
+      src_test_mocks_server_ts["server.ts"]
+    end
+    src_test_test_utils_tsx["test-utils.tsx"]
+    src_test_setup_ts["setup.ts"]
+  end
+end
+src_app_index_tsx-->src_features_auth_index_ts
+src_features_auth_index_ts-->src_features_auth_components_LoginForm_tsx
+src_features_auth_index_ts-->src_features_auth_services_authService_ts
+src_features_auth_components_LoginForm_tsx-->src_features_auth_hooks_useLogin_ts
+src_features_auth_components_LoginForm_tsx-->src_shared_components_Button_tsx
+src_features_auth_components_LoginForm_tsx-->src_shared_theme_tokens_ts
+src_features_auth_hooks_useLogin_ts-->src_features_auth_services_authService_ts
+src_shared_components_Button_tsx-->src_shared_theme_tokens_ts
+src_features_auth___tests___LoginForm_integration_test_tsx-->src_features_auth_index_ts
+src_features_auth___tests___LoginForm_integration_test_tsx-->src_test_mocks_handlers_ts
+src_features_auth___tests___LoginForm_integration_test_tsx-->src_test_mocks_server_ts
+src_features_auth___tests___LoginForm_integration_test_tsx-->src_test_test_utils_tsx
+src_test_mocks_server_ts-->src_test_mocks_handlers_ts
+src_shared_components___tests___Button_test_tsx-->src_shared_components_Button_tsx
+src_shared_components___tests___Button_test_tsx-->src_test_test_utils_tsx
+src_shared_utils___tests___formatters_test_ts-->src_shared_utils_formatters_ts
+src_test_setup_ts-->src_test_mocks_server_ts

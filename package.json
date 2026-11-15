@@ -1,0 +1,49 @@
+{
+  "main": "expo-router/entry",
+  "devDependencies": {
+    "@testing-library/react-native": "^14.1.0",
+    "@types/jest": "^30.0.0",
+    "dependency-cruiser": "^18.7.2",
+    "eslint": "^9.39.5",
+    "eslint-config-expo": "^58.0.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.7",
+    "eslint-plugin-react-native": "^5.0.0",
+    "husky": "^9.1.7",
+    "jest-expo": "~58.0.14",
+    "knip": "^6.45.1",
+    "lint-staged": "^17.6.0",
+    "madge": "^8.0.0",
+    "msw": "2.9.0",
+    "prettier": "^3.10.1",
+    "repomix": "^1.19.0",
+    "type-coverage": "^2.31.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.2"
+  },
+  "scripts": {
+    "prepare": "husky",
+    "start": "expo start",
+    "lint": "eslint src --ext .ts,.tsx",
+    "typecheck": "tsc --noEmit",
+    "test": "jest --runInBand",
+    "test:staged": "jest --bail --findRelatedTests --passWithNoTests",
+    "arch:check": "depcruise src --config .dependency-cruiser.cjs",
+    "arch:graph": "depcruise src --config .dependency-cruiser.cjs --output-type mermaid > .ai/architecture/dependency-graph.mmd",
+    "arch:json": "depcruise src --config .dependency-cruiser.cjs --output-type json > .ai/architecture/dependency-graph.json"
+  },
+  "dependencies": {
+    "expo": "~58.0.25",
+    "expo-router": "^58.0.31",
+    "react": "^19.3.1",
+    "react-native": "^0.88.1"
+  },
+  "expo": {
+    "name": "template-app",
+    "slug": "template-app",
+    "scheme": "template-app",
+    "plugins": [
+      "expo-router"
+    ]
+  }
+}

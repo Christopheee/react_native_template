@@ -1,0 +1,47 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*" # Déclenché automatiquement lors de la création d'un tag de version (ex: v1.0.0)
+  workflow_dispatch: # Permet aussi un déclenchement manuel depuis l'onglet Actions de GitHub
+
+jobs:
+  deploy-preview:
+    name: Build & Deploy (Staging / Internal Track)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: "npm"
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      # --- Option A : Si vous utilisez Expo EAS ---
+      - name: 🌐 Setup Expo
+        uses: expo/expo-github-action@v8
+        with:
+          expo-version: latest
+          token: ${{ secrets.EXPO_TOKEN }} # À configurer dans les Secrets du dépôt GitHub
+
+      - name: 🚀 Trigger EAS Build (Internal / Preview)
+        run: |
+          # Exemple pour lancer un build de preview Android/iOS via EAS
+          # eas build --platform all --profile preview --non-interactive
+          echo "Configurez votre commande de build CD ici (EAS ou Fastlane)"
+
+      # --- Option B : Si vous utilisez React Native CLI + Fastlane ---
+      # - name: 🍎 Set up Ruby (pour Fastlane)
+      #   uses: ruby/setup-ruby@v1
+      #   with:
+      #     ruby-version: '3.2'
+      #     bundler-cache: true

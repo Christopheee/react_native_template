@@ -1,0 +1,92 @@
+# ==========================================
+# Dépendances & Gestionnaires de paquets
+# ==========================================
+node_modules/
+.pnp
+.pnp.js
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ==========================================
+# Expo & Metro Bundler
+# ==========================================
+.expo/
+.expo-shared/
+dist/
+web-build/
+expo-env.d.ts
+.metro-health-check*
+
+# ==========================================
+# Builds Natifs (Android & iOS)
+# ==========================================
+# Android
+android/.gradle/
+android/build/
+android/app/build/
+android/captures/
+android/local.properties
+*.apk
+*.aab
+*.keystore
+!debug.keystore
+
+# iOS
+ios/Pods/
+ios/build/
+ios/*.xcworkspace/xcuserdata/
+ios/*.xcodeproj/xcuserdata/
+ios/*.xcodeproj/project.xcworkspace/xcuserdata/
+*.ipa
+*.dSYM.zip
+*.dSYM
+*.mobileprovision
+*.p12
+*.cer
+
+# ==========================================
+# Variables d'environnement & Secrets
+# ==========================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+
+# ==========================================
+# Tests, Coverage & Caches Qualité
+# ==========================================
+coverage/
+.nyc_output/
+.eslintcache
+*.tsbuildinfo
+
+# ==========================================
+# Outillage IA & Graphes d'Architecture
+# ==========================================
+# On garde les skills (.github/skills/) et les règles (.github/instructions/),
+# mais on ignore les exports temporaires ou fichiers volumineux générés à la volée :
+repomix-output.*
+.ai/architecture/*.svg
+.ai/architecture/*.png
+# Note : Laisse .ai/architecture/dependency-graph.mmd et .json versionnés
+# si tu veux que GitHub Copilot y ait accès directement sur GitHub.com.
+
+# ==========================================
+# Système & Éditeurs (IDE)
+# ==========================================
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+*.swo
+*~
+
+# VS Code (on ignore les réglages personnels mais on garde les extensions/MCP recommandés)
+.vscode/*
+!.vscode/extensions.json
+!.vscode/mcp.json
+!.vscode/settings.json
